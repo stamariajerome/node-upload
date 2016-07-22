@@ -19,8 +19,8 @@ var storage = multer.diskStorage({
     cb(null, 'public/uploads');
   },
   filename: function(req, file, cb) {
-    //TODO loops through all files and renaming them and modify helper
-    file = helper.uuid(file);
+    //every file is converted to uuid
+    file.originalname = helper.uuid(file.originalname);
     cb(null, file.originalname + helper.getFileExtension(file.mimetype));
   }
 });

@@ -1,11 +1,9 @@
 uuid = require('node-uuid');
 var helper = {};
 
-helper.uuid = function(files) {
-  for(var x in files) {
-    files[x].originalname = uuid.v1(files[x].originalname);
-  }
-  return files;
+helper.uuid = function(file) {
+  var fileuuid = uuid.v1(file);
+  return fileuuid;
 };
 
 helper.convertFileExtension = function(extension) {
