@@ -8,7 +8,7 @@ var express      = require('express'),
 //* ========
 //  HELPERS
 //* ========
-var helper = require('./helpers');
+var helpers = require('./helpers');
 
 //* ==============
 //  CONFIGURATION
@@ -20,12 +20,13 @@ var storage = multer.diskStorage({
   },
   filename: function(req, file, cb) {
     //every file is converted to uuid
-    file.originalname = helper.uuid(file.originalname);
-    cb(null, file.originalname + helper.getFileExtension(file.mimetype));
+    file.originalname = helpers.uuid(file.originalname);
+    cb(null, file.originalname + helpers.getFileExtension(file.mimetype));
   }
 });
 //if default storage is not avaiable use the custom storage.
 var dest = 'public/uploads/' || storage;
+//use dest || storage property
 var upload = multer({storage: storage});
 var app = express();
 app.set('view engine', 'ejs');
@@ -34,6 +35,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var files = [];
 
 app.get('/', function(req, res) {
+  console.log(files);
   res.render('index', {files: files});
 });
 

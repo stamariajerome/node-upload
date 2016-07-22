@@ -7,9 +7,12 @@ helper.uuid = function(file) {
 };
 
 helper.convertFileExtension = function(extension) {
-  if(extension === 'jpeg') {
-    var convertedExtension = 'jpg';
-    return convertedExtension;
+  var ext = ['jpeg'];
+  for(i = 0; i < ext.length; i++) {
+    if(extension === ext[i]) {
+      extension = 'jpg';
+    }
+  return extension;
   }
 };
 
